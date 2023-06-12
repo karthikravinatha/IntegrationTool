@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('send_msg/', include('Trigger_otp_APP.urls')),
     path('send_mail/', include('Trigger_email_APP.urls')),
+    path('translation/', include('TranslatorAPP.urls')),
 ]

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+.myDiv {
+  border: 5px outset red;
+  background-color: lightblue;
+<!--  text-align: center;-->
+}
+
+#translated_data{
+display: none}
+    </style>
+    <script>
+    var div_list = ["#myDiv","#myDiv1","#myDiv2","#myDiv3"]
+    var arr = []
+    $(document).ready(function(){
+        for(var i = 0; i < div_list.length; i++){
+            var obj = {};
+            var tmp = div_list[i]
+            var txt = $(tmp.toString()).text()
+            obj[tmp] = txt;
+            arr.push(obj);
+        }
+<!--        var ss = $("#translated_data").val();-->
+<!--        console.log()-->
+
+        $('#colorSelect').change(function(){
+        $("#hidden_f").val("")
+<!--        $("#hidden_f").val(JSON.stringify(arr))-->
+        $("#hidden_f").val(document.getElementById('demo').innerHTML)
+
+
+       console.log(JSON.stringify(arr))
+       });
+       });
+
+        $(window).on('load', function() {
+         if($("#translated_data").val().length > 1){
+            document.getElementById('demo').innerHTML = $("#translated_data").val()
+<!--            $("#demo").append($("#translated_data").val())-->
+            console.log($("#translated_data").val().length)
+        }
+        });
+    </script>
+</head>
+<body id="demo">
+
+<h1>The div element</h1>
+<form method="post">
+    <select name='colors' id="colorSelect">
+        <option value="none">Language</option>
+        <option value='red'>Kannada</option>
+<!--        <option value='green'>Green</option>-->
+<!--        <option value='blue'>Blue</option>-->
+    </select>
+    <input type="hidden" id="hidden_f" name="hidden_f">
+    <input type="submit" value=" Button">
+</form>
+<br>
+
+<div class="myDiv" id="myDiv">
+    <p>An echocardiogram is an ultrasound of the heart. It uses standard 2D, 3D and Doppler ultrasound to create images
+        of the heart. The test does not involve any radiation.</p>
+</div>
+<br>
+
+<div class="myDiv" id="myDiv1">
+    <p>You are settled comfortably in an area where your privacy is respected throughout the procedure. You will be
+        given a hospital gown to change into.</p>
+</div>
+<br>
+
+<div class="myDiv" id="myDiv2">
+    <p>The technologist will use an ultrasound probe with the conducting gel on your chest, stomach and neck to get
+        different views of the heart. In the case of female patients, the procedure is performed only by a female
+        technologist.</p>
+</div>
+<br>
+
+<div class="myDiv" id="myDiv3">
+    <p>The Adult cardiology treatments and services include Coronary angiogram and angioplasty (radial and femoral),
+        Emergency Percutaneous Coronary Intervention (PCI), Complex coronary interventions (Left main, bifurcation,
+        chronic total occlusion, rotaablation), Coronary lesion physiological assessment and imaging (FFR, IVUS, OCT),
+        Electrophysiological Radio Ablation including 3D ablation, Structural heart disease intervention including
+        Transaortic valve implantation, Left Atrial Appendage closures, Balloon Mitral Valvotomy, Balloon pulmonary
+        valvotomy, Adult congenital heart disease interventions including atrial septal defect closure, ventricular
+        septal defect closure</p>
+</div>
+<div>
+    {% for k,v in translated_data.items%}
+<!--    <p class="myDiv">{{v}}</p>-->
+    {%endfor%}
+</div>
+<br>
+
+<p>This is some text outside the div element.</p>
+<textarea id="translated_data">{{translated_data}}</textarea>
+</body>
+</html>

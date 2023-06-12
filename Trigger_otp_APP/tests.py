@@ -1,28 +1,27 @@
 from google.cloud import translate
 
+text = '<body><h1>The div element</h1><div class="myDiv"><h2>This is a heading in a div element</h2><p>This is some text in a div element.</p></div><br><div class="myDiv"><h2>This is a heading in a div element</h2><p>This is some text in a div element.</p></div><br><div class="myDiv"><h2>This is a heading in a div element</h2><p>This is some text in a div element.</p></div><br><div class="myDiv"><h2>This is a heading in a div element</h2><p>This is some text in a div element.</p></div><br><p>This is some text outside the div element.</p></body>'
 
-def translate_text(text="<h5>The Adult cardiology treatments and services</h5>", project_id="august-victor-389603"):
 
+def translate_text(text=text, project_id="august-victor-389603"):
     client = translate.TranslationServiceClient()
     location = "global"
     parent = f"projects/{project_id}/locations/{location}"
     response = client.translate_text(
-    request={
-        "parent": parent,
-        "contents": [text],
-        "mime_type": "text/html",
-        # "mime_type": "text/plain",
-        "source_language_code": "en-US",
-        "target_language_code": "kn",
-    })
+        request={
+            "parent": parent,
+            "contents": [text],
+            "mime_type": "text/html",
+            # "mime_type": "text/plain",
+            # "source_language_code": "en-US",
+            "target_language_code": "kn",
+        })
 
     for translation in response.translations:
         print("Translated text: {}".format(translation.translated_text))
 
 
 translate_text()
-
-
 
 # get list of languages
 #
@@ -41,9 +40,6 @@ translate_text()
 #     display_name = language.display_name
 #     print(f"{language_code:10}{display_name}")
 #
-
-
-
 
 
 # from google.cloud import translate_v2 as translate
