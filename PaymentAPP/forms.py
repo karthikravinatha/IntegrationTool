@@ -1,12 +1,12 @@
 from django import forms
-from .models import ColdCoffee
+from .models import RazorpayPaymentHistory
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 
 
 class CoffeePaymentForm(forms.ModelForm):
     class Meta:
-        model = ColdCoffee
+        model = RazorpayPaymentHistory
         fields = "__all__"
 
     def __init__(self, *args, **kwargs):

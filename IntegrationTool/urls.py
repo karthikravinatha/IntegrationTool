@@ -16,10 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('send_msg/', include('Trigger_otp_APP.urls')),
     path('send_mail/', include('Trigger_email_APP.urls')),
     path('translation/', include('TranslatorAPP.urls')),
-]
+    path('payment/', include('PaymentAPP.urls')),
+] + static(settings.STATIC_URL, document_too=settings.STATIC_ROOT)

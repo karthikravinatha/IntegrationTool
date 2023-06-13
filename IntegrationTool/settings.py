@@ -27,6 +27,9 @@ SECRET_KEY = 'django-insecure-f$rb97-2e(m5wej)#3=^kjj_(mq442lyx3%c6ylgt=inftvwlh
 SENDGRID_API_KEY = os.getenv("SENDGRID_KEY")
 FROM_EMAIL = os.getenv("FROM_EMAIL")
 
+RAZOR_KEY_ID = "rzp_test_LOE0KCOU37YDdQ"
+RAZOR_KEY_SECRET = "zsnnl8Hh01dWUCVAGQuk6d3L"
+
 # infobip
 INFOBIP_API_KEY = os.getenv("INFOBIP_KEY")
 INFOBIP_API_KEY_WHATSAPP = os.getenv("INFOBIP_WHATSAPP_KEY")
@@ -36,6 +39,7 @@ INFOBIP_BASE_URL = os.getenv("INFOBIP_URL")
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# CSRF_TRUSTED_ORIGINS = ["https://api.razorpay.com"]
 
 # Application definition
 
@@ -50,6 +54,9 @@ INSTALLED_APPS = [
     'Trigger_otp_APP',
     'Trigger_email_APP',
     'TranslatorAPP',
+    'PaymentAPP',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +70,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'IntegrationTool.urls'
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -125,6 +132,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
